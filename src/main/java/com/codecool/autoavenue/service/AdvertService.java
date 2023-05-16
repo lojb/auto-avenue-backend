@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AdvertService {
@@ -34,6 +33,8 @@ public class AdvertService {
         advertToUpdate.setManufacturer(advert.getManufacturer());
         advertToUpdate.setTitle(advert.getTitle());
         advertToUpdate.setDescription(advert.getDescription());
+
+        advertDAO.save(advertToUpdate);
     }
 
     public void deleteAdvertById(Long id) {
