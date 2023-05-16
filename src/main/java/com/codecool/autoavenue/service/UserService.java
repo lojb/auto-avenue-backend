@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,8 +17,8 @@ public class UserService {
         return userDAO.findAll();
     }
 
-    public User getUserById(Long id) {
-        return userDAO.getById(id);
+    public Optional<User> getUserById(Long id) {
+        return userDAO.findById(id);
     }
 
     public void addUser(User user) {
@@ -25,7 +26,7 @@ public class UserService {
     }
 
     public void updateUser(Long id, User newUser) {
-        User userToUpdate = userDAO.getById(id);
+        User userToUpdate = userDAO.findById(id).get();
 
         userToUpdate.setUsername(newUser.getUsername());
         userToUpdate.setPassword(newUser.getPassword());
@@ -33,6 +34,7 @@ public class UserService {
         userToUpdate.setAdverts(newUser.getAdverts());
 
         userDAO.save(userToUpdate);
+
     }
 
     public void deleteUser(Long id) {
