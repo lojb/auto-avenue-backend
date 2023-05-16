@@ -1,15 +1,12 @@
 package com.codecool.autoavenue.service;
 
 import com.codecool.autoavenue.model.Advert;
-import com.codecool.autoavenue.model.User;
 import com.codecool.autoavenue.model.Wishlist;
 import com.codecool.autoavenue.service.DAO.WishlistDAO;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class WishlistService {
