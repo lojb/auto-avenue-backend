@@ -1,7 +1,6 @@
 package com.codecool.autoavenue.model;
 
 import com.codecool.autoavenue.model.enums.UserRole;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
