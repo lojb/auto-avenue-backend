@@ -26,7 +26,7 @@ public class AdvertController {
                                       @RequestParam(required = false, value = "maxYear") Integer maxYear) {
         var adverts = advertService.getAllAdverts().stream();
         if (manufacturer != null) {
-            adverts = adverts.filter(a -> a.getManufacturer().toLowerCase().equals(manufacturer.toLowerCase()));
+            adverts = adverts.filter(a -> a.getManufacturer().equalsIgnoreCase(manufacturer));
         }
         if (model != null) {
             adverts = adverts.filter(a -> a.getModel().toLowerCase().contains(model.toLowerCase()));

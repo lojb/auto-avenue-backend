@@ -1,6 +1,5 @@
 package com.codecool.autoavenue.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
