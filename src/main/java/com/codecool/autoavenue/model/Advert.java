@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 public class Advert {
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String manufacturer;
@@ -20,6 +19,7 @@ public class Advert {
     private int year;
     private String title;
     private String description;
+    private double price;
     @ManyToOne
     private User seller;
     @OneToMany(mappedBy = "advert")

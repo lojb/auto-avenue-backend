@@ -26,9 +26,9 @@ public class AdvertController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> addAdvert(@RequestBody Advert advert){
-        advertService.addAdvert(advert);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<Advert> addAdvert(@RequestBody Advert advert){
+       Advert createdAdvert = advertService.addAdvert(advert);
+        return new ResponseEntity<>(createdAdvert, HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
@@ -39,6 +39,7 @@ public class AdvertController {
             advertService.updateAdvertById(id, updatedAdvert);
             return new ResponseEntity<>(HttpStatus.OK);
         } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 
     @DeleteMapping("/{id}")

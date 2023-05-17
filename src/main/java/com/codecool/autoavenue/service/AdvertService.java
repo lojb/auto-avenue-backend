@@ -21,8 +21,8 @@ public class AdvertService {
         return advertDAO.findById(id).get();
     }
 
-    public void addAdvert(Advert advert) {
-        advertDAO.save(advert);
+    public Advert addAdvert(Advert advert) {
+       return advertDAO.save(advert);
     }
 
     public void updateAdvertById(Long id, Advert advert) {
@@ -34,6 +34,9 @@ public class AdvertService {
         advertToUpdate.setManufacturer(advert.getManufacturer());
         advertToUpdate.setTitle(advert.getTitle());
         advertToUpdate.setDescription(advert.getDescription());
+        advertToUpdate.setPrice(advert.getPrice());
+
+        advertDAO.save(advertToUpdate);
     }
 
     public void deleteAdvertById(Long id) {
