@@ -1,6 +1,7 @@
 package com.codecool.autoavenue.model;
 
 import com.codecool.autoavenue.model.enums.UserRole;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -20,5 +21,6 @@ public class User {
     private String password;
     private UserRole role;
     @OneToMany(mappedBy = "seller")
+    @JsonBackReference
     private List<Advert> adverts;
 }
