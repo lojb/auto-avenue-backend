@@ -1,5 +1,6 @@
 package com.codecool.autoavenue.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,7 @@ public class Advert {
     private String description;
     private double price;
     @ManyToOne
+    @JsonManagedReference
     private User seller;
     @OneToMany(mappedBy = "advert")
     private List<Message> messages;
