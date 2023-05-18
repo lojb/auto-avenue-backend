@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AdvertService {
@@ -19,6 +18,10 @@ public class AdvertService {
 
     public Advert getAdvertById(Long id) {
         return advertDAO.findById(id).get();
+    }
+
+    public List<Advert> getAdvertsByUserId(Long id) {
+        return advertDAO.findBySellerId(id);
     }
 
     public Advert addAdvert(Advert advert) {

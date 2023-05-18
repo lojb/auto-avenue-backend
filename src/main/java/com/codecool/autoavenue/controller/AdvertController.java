@@ -38,6 +38,11 @@ public class AdvertController {
         return advertService.getAdvertById(id);
     }
 
+    @GetMapping("/user/{userId}")
+    public List<Advert> getAdvertsByUserId(@PathVariable("userId") Long userId) {
+        return advertService.getAdvertsByUserId(userId);
+    }
+
     @PostMapping
     public ResponseEntity<Advert> addAdvert(@RequestBody Advert advert){
        Advert createdAdvert = advertService.addAdvert(advert);
