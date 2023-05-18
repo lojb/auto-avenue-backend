@@ -21,6 +21,10 @@ public class UserService {
         return userDAO.findById(id);
     }
 
+    public Optional<User> getUserByUsername(String username) {
+        return userDAO.findUserByUsername(username);
+    }
+
     public void addUser(User user) {
         userDAO.save(user);
     }
@@ -34,7 +38,6 @@ public class UserService {
         userToUpdate.setAdverts(newUser.getAdverts());
 
         userDAO.save(userToUpdate);
-
     }
 
     public void deleteUser(Long id) {
