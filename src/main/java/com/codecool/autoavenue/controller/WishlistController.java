@@ -1,6 +1,7 @@
 package com.codecool.autoavenue.controller;
 
 import com.codecool.autoavenue.model.Advert;
+import com.codecool.autoavenue.model.User;
 import com.codecool.autoavenue.model.Wishlist;
 import com.codecool.autoavenue.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,8 @@ public class WishlistController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> addWishlist(@RequestBody Wishlist wishlist){
-        wishlistService.addWishlist(wishlist);
+    public ResponseEntity<Void> addWishlist(@RequestBody User user){
+        wishlistService.addWishlistForUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

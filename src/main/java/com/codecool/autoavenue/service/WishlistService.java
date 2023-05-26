@@ -1,6 +1,7 @@
 package com.codecool.autoavenue.service;
 
 import com.codecool.autoavenue.model.Advert;
+import com.codecool.autoavenue.model.User;
 import com.codecool.autoavenue.model.Wishlist;
 import com.codecool.autoavenue.service.DAO.WishlistDAO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,9 @@ public class WishlistService {
         return wishlistDAO.findById(id).get();
     }
 
-    public void addWishlist(Wishlist wishlist) {
+    public void addWishlistForUser(User user) {
+        Wishlist wishlist = new Wishlist();
+        wishlist.setUser(user);
         wishlistDAO.save(wishlist);
     }
 
