@@ -21,4 +21,6 @@ public class User {
     private UserRole role;
     @OneToMany(mappedBy = "sellerId")
     private List<Advert> adverts;
+    @OneToOne
+    private Wishlist wishlist;
 }
