@@ -2,12 +2,14 @@ package com.codecool.autoavenue.controller;
 
 import com.codecool.autoavenue.model.User;
 import com.codecool.autoavenue.service.UserService;
+import com.codecool.autoavenue.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/users")
@@ -16,6 +18,9 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    WishlistService wishlistService;
+
     @GetMapping
     public List<User> getAllUsers(){return userService.getAllUsers();
     }
@@ -23,14 +28,15 @@ public class UserController {
     @PostMapping
     public ResponseEntity<Void> addUser(@RequestBody User user){
         userService.addUser(user);
+        wishlistService.addWishlistForUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable("userId") Long id) {
-        User user = userService.getUserById(id).get();
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        Optional<User> user = userService.getUserById(id);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -38,9 +44,9 @@ public class UserController {
 
     @GetMapping("/username/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable("username") String username) {
-        User user = userService.getUserByUsername(username).get();
-        if (user != null) {
-            return ResponseEntity.ok(user);
+        Optional<User> user = userService.getUserByUsername(username);
+        if (user.isPresent()) {
+            return ResponseEntity.ok(user.get());
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -48,8 +54,8 @@ public class UserController {
 
     @PutMapping("/{userId}")
     public ResponseEntity<Void> updateUser(@PathVariable("userId") Long id, @RequestBody User newUser) {
-        User updatedUser = userService.getUserById(id).get();
-        if (updatedUser != null) {
+        Optional<User> updatedUser = userService.getUserById(id);
+        if (updatedUser.isPresent()) {
             userService.updateUser(id, newUser);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
