@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wishlists")
+@RequestMapping("/wishlist")
 public class WishlistController {
     @Autowired
     private WishlistService wishlistService;
@@ -23,9 +23,9 @@ public class WishlistController {
         return wishlistService.getAllWishlists();
     }
 
-    @GetMapping("/{id}")
-    public Wishlist getWishlistById(@PathVariable("id") Long id) {
-        return wishlistService.getWishlistById(id);
+    @GetMapping("/{userId}")
+    public Wishlist getWishlistByUserId(@PathVariable("userId") Long id) {
+        return wishlistService.getWishlistByUserId(id);
     }
 
     @PostMapping
