@@ -6,6 +6,7 @@ import com.codecool.autoavenue.service.WishlistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserController {
     @Autowired
     WishlistService wishlistService;
 
+    @Secured("ADMIN")
     @GetMapping
     public List<User> getAllUsers(){return userService.getAllUsers();
     }
@@ -63,6 +65,7 @@ public class UserController {
         }
     }
 
+    @Secured("ADMIN")
     @DeleteMapping("/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable("userId") Long id) {
         userService.deleteUser(id);
