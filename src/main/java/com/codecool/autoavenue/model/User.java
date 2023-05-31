@@ -11,9 +11,10 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Data
+@Builder
 @Table(name = "users")
-@Getter
-@Setter
+@AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
     @Id
@@ -22,6 +23,7 @@ public class User implements UserDetails {
     private String username;
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
     private UserRole role;
     @OneToMany(mappedBy = "sellerId")
     private List<Advert> adverts;

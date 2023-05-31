@@ -25,19 +25,36 @@ public class UserService {
         return userDAO.findUserByUsername(username);
     }
 
-    public void addUser(User user) {
-        userDAO.save(user);
+    public void addUser(User user) throws Exception {
+        boolean isFree = true;
+        for (User u: userDAO.findAll()
+             ) {
+            if(u.getUsername().equals(user.getUsername())){
+                isFree = false;
+            }
+        }
+        if(isFree) {
+            userDAO.save(user);
+        } else {
+            throw new Exception("asd");
+        }
     }
 
     public void updateUser(Long id, User newUser) {
-        User userToUpdate = userDAO.findById(id).get();
+        User userToUpdate;
+        if(userDAO.findById(id).isPresent()){
+            userToUpdate = userDAO.findById(id).get();
 
-        userToUpdate.setUsername(newUser.getUsername());
-        userToUpdate.setPassword(newUser.getPassword());
-        userToUpdate.setRole(newUser.getRole());
-        userToUpdate.setAdverts(newUser.getAdverts());
+            userToUpdate.setUsername(newUser.getUsername());
+            userToUpdate.setPassword(newUser.getPassword());
+            userToUpdate.setRole(newUser.getRole());
+            userToUpdate.setAdverts(newUser.getAdverts());
 
-        userDAO.save(userToUpdate);
+            userDAO.save(userToUpdate);
+
+        }
+
+
     }
 
     public void deleteUser(Long id) {
