@@ -6,6 +6,7 @@ import com.codecool.autoavenue.config.JwtService;
 import com.codecool.autoavenue.model.User;
 import com.codecool.autoavenue.model.enums.UserRole;
 import com.codecool.autoavenue.service.UserService;
+import com.codecool.autoavenue.service.WishlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class AuthenticationService {
 
     private final UserService userService;
+    private final WishlistService wishlistService;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
@@ -29,10 +31,14 @@ public class AuthenticationService {
                 .role(UserRole.USER)
                 .build();
         userService.addUser(user);
+        wishlistService.addWishlistForUser(user);
 
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .username(user.getUsername())
+                .role(user.getRole())
+                .userId(user.getId())
                 .build();
     }
 
@@ -48,6 +54,9 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+                .username(user.getUsername())
+                .role(user.getRole())
+                .userId(user.getId())
                 .build();
     }
 }
