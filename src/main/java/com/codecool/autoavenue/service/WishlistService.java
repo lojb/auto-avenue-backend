@@ -22,6 +22,10 @@ public class WishlistService {
         return wishlistDAO.findById(id).get();
     }
 
+    public Wishlist getWishlistByUserId(Long id) {
+        return wishlistDAO.findWishlistByUser(id);
+    }
+
     public void addWishlistForUser(User user) {
         Wishlist wishlist = new Wishlist();
         wishlist.setUser(user);
