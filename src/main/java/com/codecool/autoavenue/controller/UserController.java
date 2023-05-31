@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> addUser(@RequestBody User user){
+    public ResponseEntity<Void> addUser(@RequestBody User user) throws Exception {
         userService.addUser(user);
         wishlistService.addWishlistForUser(user);
         return new ResponseEntity<>(HttpStatus.OK);
