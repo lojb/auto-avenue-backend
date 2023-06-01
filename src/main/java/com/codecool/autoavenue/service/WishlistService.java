@@ -5,6 +5,7 @@ import com.codecool.autoavenue.model.User;
 import com.codecool.autoavenue.model.Wishlist;
 import com.codecool.autoavenue.service.DAO.WishlistDAO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +20,7 @@ public class WishlistService {
     }
 
     public Wishlist getWishlistById(Long id) {
-        return wishlistDAO.findById(id).get();
-    }
-
-    public Wishlist getWishlistByUserId(Long id) {
-        return wishlistDAO.findWishlistByUser(id);
+        return wishlistDAO.findWishlistById(id);
     }
 
     public void addWishlistForUser(User user) {
@@ -33,14 +30,20 @@ public class WishlistService {
     }
 
     public void addAdvertToWishlist(Long id, Advert advert) {
-        Wishlist wishlistToUpdate = wishlistDAO.findById(id).get();
+        Wishlist wishlistToUpdate = wishlistDAO.findWishlistById(id);
 
-        List<Advert> list = wishlistToUpdate.getWishlistItems();
-        list.add(advert);
-
-        wishlistToUpdate.setWishlistItems(list);
-
+        wishlistToUpdate.getWishlistItems().add(advert);
         wishlistDAO.save(wishlistToUpdate);
+    }
+
+    public void deleteWishlistItem(Long itemId, Long wishlistId) {
+        Wishlist wishlist = getWishlistById(wishlistId);
+
+        Advert item = wishlist.getWishlistItems().stream().filter(i -> i.getId() == itemId).findFirst().get();
+
+        wishlist.getWishlistItems().remove(item);
+
+        wishlistDAO.save(wishlist);
     }
 
     public void deleteWishlist(Long id) {
