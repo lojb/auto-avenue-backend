@@ -21,6 +21,7 @@ public class Advert {
     private String description;
     private double price;
     private Long sellerId;
+    private String imageUrl;
     @OneToMany(mappedBy = "advert")
     private List<Message> messages;
 }
