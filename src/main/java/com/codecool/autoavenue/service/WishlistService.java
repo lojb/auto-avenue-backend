@@ -15,6 +15,10 @@ public class WishlistService {
     @Autowired
     private WishlistDAO wishlistDAO;
 
+    public void setWishlistDAO(WishlistDAO wishlistDAO) {
+        this.wishlistDAO = wishlistDAO;
+    }
+
     public List<Wishlist> getAllWishlists() {
         return wishlistDAO.findAll();
     }

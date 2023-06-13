@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,5 +20,5 @@ public class Wishlist {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany
-    private List<Advert> wishlistItems;
+    private List<Advert> wishlistItems = new ArrayList<>();
 }
