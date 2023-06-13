@@ -19,6 +19,7 @@ public class AdvertController {
     @GetMapping
     public List<Advert> getAllAdverts(@RequestParam(required = false, value = "manufacturer") String manufacturer,
                                       @RequestParam(required = false, value = "model") String model,
+                                      @RequestParam(required = false, value = "transmission") String transmission,
                                       @RequestParam(required = false, value = "minPrice") Double minPrice,
                                       @RequestParam(required = false, value = "maxPrice") Double maxPrice,
                                       @RequestParam(required = false, value = "minYear") Integer minYear,
@@ -26,6 +27,7 @@ public class AdvertController {
         return advertService.getAllAdverts().stream()
                 .filter(a -> manufacturer == null || a.getManufacturer().toLowerCase().contains(manufacturer.toLowerCase()))
                 .filter(a -> model == null || a.getModel().toLowerCase().contains(model.toLowerCase()))
+                .filter(a -> transmission == null || a.getTransmission().toLowerCase().contains(transmission.toLowerCase()))
                 .filter(a -> minPrice == null || a.getPrice() >= minPrice)
                 .filter(a -> maxPrice == null || a.getPrice() <= maxPrice)
                 .filter(a -> minYear == null || a.getYear() >= minYear)

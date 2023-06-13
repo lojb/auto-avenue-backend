@@ -38,6 +38,7 @@ public class AdvertService {
         advertToUpdate.setTitle(advert.getTitle());
         advertToUpdate.setDescription(advert.getDescription());
         advertToUpdate.setPrice(advert.getPrice());
+        advertToUpdate.setTransmission(advert.getTransmission());
 
         advertDAO.save(advertToUpdate);
     }
