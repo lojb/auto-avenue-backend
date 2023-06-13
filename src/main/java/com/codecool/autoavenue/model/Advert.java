@@ -20,6 +20,7 @@ public class Advert {
     private String title;
     private String description;
     private double price;
+    private String transmission;
     private Long sellerId;
     private String imageUrl;
     @OneToMany(mappedBy = "advert")
