@@ -12,6 +12,11 @@ public class AdvertService {
     @Autowired
     private AdvertDAO advertDAO;
 
+    public void setAdvertDAO(AdvertDAO advertDAO) {
+        this.advertDAO = advertDAO;
+    }
+
+
     public List<Advert> getAllAdverts() {
         return advertDAO.findAll();
     }
