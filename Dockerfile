@@ -2,7 +2,7 @@ FROM maven:3.9.1-eclipse-temurin-17 AS build
 RUN mkdir /project
 COPY . /project
 WORKDIR /project
-RUN mvn clean install -DskipTests
+RUN mvn clean install
 
 FROM maven:3.9.1-eclipse-temurin-17
 RUN mkdir /app
