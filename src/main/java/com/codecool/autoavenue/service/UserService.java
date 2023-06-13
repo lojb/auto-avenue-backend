@@ -13,6 +13,10 @@ public class UserService {
     @Autowired
     private UserDAO userDAO;
 
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
     public List<User> getAllUsers() {
         return userDAO.findAll();
     }
@@ -41,9 +45,9 @@ public class UserService {
     }
 
     public void updateUser(Long id, User newUser) {
-        User userToUpdate;
-        if(userDAO.findById(id).isPresent()){
-            userToUpdate = userDAO.findById(id).get();
+        Optional<User> optionalUser = userDAO.findById(id);
+        if (optionalUser.isPresent()) {
+            User userToUpdate = optionalUser.get();
 
             userToUpdate.setUsername(newUser.getUsername());
             userToUpdate.setPassword(newUser.getPassword());
