@@ -1,7 +1,7 @@
 version: '3'
 services:
   frontend:
-    image: your_frontend_image:latest
+    image: loba6/autoavenue-frontend:latest
     ports:
       - 3000:3000
 
