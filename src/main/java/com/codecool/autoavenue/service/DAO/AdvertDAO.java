@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface AdvertDAO extends JpaRepository<Advert, Long> {
     List<Advert> findBySellerId(Long id);
+
+    Advert getAdvertById(Long id);
 }

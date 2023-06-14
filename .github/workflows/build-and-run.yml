@@ -22,12 +22,13 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '17'
+          distribution: 'adopt'
 
       - name: Build and Push Docker Image
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
-          docker build -t your-dockerhub-username/your-dockerhub-repo-name:${{ github.sha }} .
+          docker build -t $DOCKER_USERNAME/autoavenue-backend:${{ github.sha }} .
           echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-          docker push your-dockerhub-username/your-dockerhub-repo-name:${{ github.sha }}
+          docker push $DOCKER_USERNAME/autoavenue-backend:${{ github.sha }}
