@@ -20,7 +20,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://autoavenue:5432/autoavenue-database
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://autoavenue-backend-postgres-1:5432/autoavenue-database
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=pw123
 
