@@ -5,6 +5,7 @@ import com.codecool.autoavenue.service.DAO.AdvertDAO;
 import com.codecool.autoavenue.service.AdvertService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -20,6 +21,7 @@ class AdvertServiceTest {
     @Mock
     private AdvertDAO advertDAO;
 
+    @InjectMocks
     private AdvertService advertService;
 
     @BeforeEach
