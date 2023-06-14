@@ -10,3 +10,6 @@ COPY --from=build /project/target/autoavenue-0.0.1-SNAPSHOT.jar /app/autoavenue-
 COPY src/main/resources/data.sql /app/data.sql
 WORKDIR /app
 CMD ["java", "-jar", "/app/autoavenue-0.0.1-SNAPSHOT.jar", "--spring.datasource.initialization-mode=always", "--spring.datasource.data=classpath:/app/data.sql"]
+
+EXPOSE 8080
+EXPOSE 5432
