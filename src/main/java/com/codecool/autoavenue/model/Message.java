@@ -18,4 +18,5 @@ public class Message {
     @ManyToOne
     private Advert advert;
     private String message;
+    /*Test*/
 }
