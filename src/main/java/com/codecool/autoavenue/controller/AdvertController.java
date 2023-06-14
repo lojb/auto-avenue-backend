@@ -25,6 +25,7 @@ public class AdvertController {
                                       @RequestParam(required = false, value = "minYear") Integer minYear,
                                       @RequestParam(required = false, value = "maxYear") Integer maxYear) {
         return advertService.getAllAdverts().stream()
+                .filter(Advert::isActive)
                 .filter(a -> manufacturer == null || a.getManufacturer().toLowerCase().contains(manufacturer.toLowerCase()))
                 .filter(a -> model == null || a.getModel().toLowerCase().contains(model.toLowerCase()))
                 .filter(a -> transmission == null || a.getTransmission().toLowerCase().contains(transmission.toLowerCase()))
@@ -42,7 +43,7 @@ public class AdvertController {
 
     @GetMapping("/user/{userId}")
     public List<Advert> getAdvertsByUserId(@PathVariable("userId") Long userId) {
-        return advertService.getAdvertsByUserId(userId);
+        return advertService.getAdvertsByUserId(userId).stream().filter(Advert::isActive).toList();
     }
 
     @PostMapping
@@ -64,11 +65,11 @@ public class AdvertController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAdvertById(@PathVariable("id") Long id){
-        Advert advertToDelete = advertService.getAdvertById(id);
 
-        if (advertToDelete != null) {
+
+
             advertService.deleteAdvertById(id);
             return new ResponseEntity<>(HttpStatus.OK);
-        } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
     }
 }

@@ -23,6 +23,7 @@ public class Advert {
     private String transmission;
     private Long sellerId;
     private String imageUrl;
+    private boolean isActive;
     @OneToMany(mappedBy = "advert")
     private List<Message> messages;
 }

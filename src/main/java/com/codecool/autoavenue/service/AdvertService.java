@@ -30,7 +30,9 @@ public class AdvertService {
     }
 
     public Advert addAdvert(Advert advert) {
-       return advertDAO.save(advert);
+       advert.setActive(true);
+
+        return advertDAO.save(advert);
     }
 
     public void updateAdvertById(Long id, Advert advert) {
@@ -49,6 +51,12 @@ public class AdvertService {
     }
 
     public void deleteAdvertById(Long id) {
-        advertDAO.deleteById(id);
+        Advert advert = getAdvertById(id);
+        if(advert != null){
+            advert.setActive(false);
+            advertDAO.save(advert);
+        }
+
+
     }
 }
